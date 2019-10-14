@@ -157,28 +157,35 @@ def generaGrafica(listaArchivos, numeroArchivosCorruptos):
     plt.legend(labels=nombres)
     plt.savefig("Grafica.png")
     
+def horasDeEjecucion():
+    now=datetime.datetime.now()
+    new_file = open(rutaFicheroHorasEjecucion, "a")
+    new_file.write("Hora : " + str(now) + "\n")
+    new_file.close()
 
 #Funcion utilizada como metodo main
 def main():
     
     numeroArchivosCorruptos = 0
     
-    #print listaArchivos
+    horasDeEjecucion() 
     
-    #listaRutaArchivosRes = calculaRutaArchivo(rutaDirectorio)
-    #print listaRutaArchivosRes
+    print listaArchivos
     
-    #listaHashesRes = calculaHashesArchivos(algoritmo,rutaDirectorio)
-    #print listaHashesRes
+    listaRutaArchivosRes = calculaRutaArchivo(rutaDirectorio)
+    print listaRutaArchivosRes
+    
+    listaHashesRes = calculaHashesArchivos(algoritmo,rutaDirectorio)
+    print listaHashesRes
     
     copiaNewToOld(rutaFicheroHashesNew,rutaFicheroHashesOld)
-    #print 'Fichero hashes_new copiado con exito!'
+    print 'Fichero hashes_new copiado con exito!'
     
     escribeFicheroHashesNew(algoritmo,rutaDirectorio,rutaFicheroHashesNew)
-    #print 'Fichero de hashes_new escrito con exito!'
+    print 'Fichero de hashes_new escrito con exito!'
     
-    #print 'HashCode ficheroHashesNew :' + calculaHash(algoritmo,rutaFicheroHashesNew)
-    #print 'HashCode ficheroHashesOld :' + calculaHash(algoritmo,rutaFicheroHashesOld)
+    print 'HashCode ficheroHashesNew :' + calculaHash(algoritmo,rutaFicheroHashesNew)
+    print 'HashCode ficheroHashesOld :' + calculaHash(algoritmo,rutaFicheroHashesOld)
     
     comparaFicherosHash(calculaHash(algoritmo,rutaFicheroHashesNew),calculaHash(algoritmo,rutaFicheroHashesOld),rutaFicheroHashesNew,rutaFicheroHashesOld,numeroArchivosCorruptos)
     
