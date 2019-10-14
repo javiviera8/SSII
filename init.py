@@ -160,7 +160,7 @@ def generaGrafica(listaArchivos, numeroArchivosCorruptos):
 def horasDeEjecucion():
     now=datetime.datetime.now()
     new_file = open(rutaFicheroHorasEjecucion, "a")
-    new_file.write("Hora : " + str(now) + "\n")
+    new_file.write("Hora : " + str(time.strftime("%c")) + "\n")
     new_file.close()
 
 #Funcion utilizada como metodo main
